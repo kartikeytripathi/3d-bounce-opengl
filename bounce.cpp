@@ -25,3 +25,33 @@ public:
   void moveDown() {if (y > dy) y -= dy;}
 };
 
+/ A ball.
+class Ball {
+  double radius;
+  GLfloat* color;
+  double maximumHeight;
+  double x;
+  double y;
+  double z;
+  int direction;
+public:
+  Ball(double r, GLfloat* c, double h, double x, double z):
+      radius(r), color(c), maximumHeight(h), direction(-1),
+      y(h), x(x), z(z) {
+  }
+  void update() {
+    y += direction * 0.05;
+    if (y > maximumHeight) {
+      y = maximumHeight; direction = -1;
+    } else if (y < radius) {
+      y = radius; direction = 1;
+    }
+    glPushMatrix();
+    glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, color);
+    glTranslated(x, y, z);
+    glutSolidSphere(radius, 30, 30);
+    glPopMatrix();
+  }
+};
+
+
