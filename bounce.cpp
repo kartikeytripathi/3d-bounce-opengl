@@ -87,3 +87,27 @@ public:
     glCallList(displayListId);
   }
 };
+
+// Global variables: a camera, a checkerboard and some balls.
+Checkerboard checkerboard(8, 8);
+Camera camera;
+Ball balls[] = {
+  Ball(1, GREEN, 7, 6, 1),
+  Ball(1.5, MAGENTA, 6, 3, 4),
+  Ball(0.4, WHITE, 5, 1, 7)
+};
+
+
+// Application-specific initialization: Set up global lighting parameters
+// and create display lists.
+void init() {
+  glEnable(GL_DEPTH_TEST);
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, WHITE);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, WHITE);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, WHITE);
+  glMaterialf(GL_FRONT, GL_SHININESS, 30);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+  checkerboard.create();
+}
+
