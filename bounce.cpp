@@ -125,3 +125,17 @@ void display() {
   glFlush();
   glutSwapBuffers();
 }
+// On reshape, constructs a camera that perfectly fits the window.
+void reshape(GLint w, GLint h) {
+  glViewport(0, 0, w, h);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(40.0, GLfloat(w) / GLfloat(h), 1.0, 150.0);
+  glMatrixMode(GL_MODELVIEW);
+}
+
+// Requests to draw the next frame.
+void timer(int v) {
+  glutPostRedisplay();
+  glutTimerFunc(1000/60, timer, v);
+}
