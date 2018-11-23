@@ -139,3 +139,25 @@ void timer(int v) {
   glutPostRedisplay();
   glutTimerFunc(1000/60, timer, v);
 }
+// Moves the camera according to the key pressed, then ask to refresh the
+// display.
+void special(int key, int, int) {
+  switch (key) {
+    case GLUT_KEY_LEFT: camera.moveLeft(); break;
+    case GLUT_KEY_RIGHT: camera.moveRight(); break;
+    case GLUT_KEY_UP: camera.moveUp(); break;
+    case GLUT_KEY_DOWN: camera.moveDown(); break;
+  }
+  glutPostRedisplay();
+}
+
+void key(unsigned char key, int x, int y) {
+  switch (key) {
+    case 'a': camera.moveLeft(); break;
+    case 'd': camera.moveRight(); break;
+    case 'w': camera.moveUp(); break;
+    case 's': camera.moveDown(); break;
+	case 'q': exit(0);
+
+  }
+
