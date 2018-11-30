@@ -160,4 +160,23 @@ void key(unsigned char key, int x, int y) {
 	case 'q': exit(0);
 
   }
+glutPostRedisplay();
+}
+
+
+// Initializes GLUT and enters the main loop.
+void main(int argc, char** argv) {
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+  glutInitWindowPosition(80, 80);
+  glutInitWindowSize(800, 600);
+  glutCreateWindow("Bouncing Balls");
+  glutDisplayFunc(display);
+  glutReshapeFunc(reshape);
+  glutSpecialFunc(special);
+  glutTimerFunc(100, timer, 0);
+  glutKeyboardFunc(key);
+  init();
+  glutMainLoop();
+}
 
